@@ -1,4 +1,4 @@
-## Challenge
+# Challenge
 - Create a simple deployable web app using PHP and MySQL to store names added on a web form.
 - You need to develop 2 endpoints, one for adding new names and another for reading names. 
 - Public URL must be configured on Helm values.yaml file.
@@ -6,7 +6,7 @@
 - A group of files to be deployed in a K8s cluster with Helm (in DigitalOcean)
 - A diagram
 
-# Stensul project
+## Stensul project
 This project is a simple Flask application that connects to a MySQL database. It allows users to add names to the database and retrieve a list of all names.
 
 ## Project tree
@@ -42,6 +42,8 @@ This project is a simple Flask application that connects to a MySQL database. It
 ```bash
 - Docker
 - Docker Compose
+- helm
+- kubectl
 ```
 
 ## Start app locally
@@ -56,9 +58,6 @@ docker-compose up --build
 # add user endpoint
 curl -X POST -H "Content-Type: application/json" -d '{"name": "javi"}' http://localhost:5000/add_name
 # list users endopint
-curl -X GET http://localhost:5000/list_names
-
-# list all users
 curl -X GET http://localhost:5000/list_names
 ```
 
