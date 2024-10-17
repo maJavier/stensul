@@ -67,12 +67,12 @@ chmod +x deploy/docker/push_images.sh
 ./deploy/docker/push_images.sh
 ```
 
-# Deploy app remotly 
+## Deploy app remotly 
 ```bash
 helm install stensul-app deploy/helm/stensul-app/ --namespace default
 ```
 
-# Clean up
+## Clean up
 ```bash
 # docker
 cd deploy/docker/
