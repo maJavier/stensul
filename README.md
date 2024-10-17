@@ -23,8 +23,18 @@ This project is a simple Flask application that connects to a MySQL database. It
 │   └── database.sql
 └── deploy
     ├── docker
-    │   └── docker-compose.yaml
+    │   ├── docker-compose.yaml
+    │   └── push_images.sh
     └── helm
+        └── stensul-app
+            ├── Chart.yaml
+            ├── charts
+            ├── templates
+            │   ├── _helpers.tpl
+            │   ├── deployment.yaml
+            │   ├── service.yaml
+            │   └── statefulset.yaml
+            └── values.yaml
 ```
 
 ## Prerequisite 
