@@ -1,0 +1,30 @@
+{{- range .Values.apps }}
+{{- if eq .type "Deployment" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ .name }}
+  labels:
+    app: {{ $.Release.Name }}-{{ .name }}
+spec:
+  replicas: {{ .replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}-{{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.Release.Name }}-{{ .name }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: "{{ .image.repository }}:{{ .image.tag }}"
+          ports:
+            - containerPort: {{ .service.targetPort | default 80 }}
+          env:
+          {{- range $key, $value := .env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+          {{- end }}
+{{- end }}
+{{- end }}

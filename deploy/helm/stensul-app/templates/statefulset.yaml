@@ -1,0 +1,40 @@
+{{- range .Values.apps }}
+{{- if eq .type "StatefulSet" }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ $.Release.Name }}-{{ .name }}
+spec:
+  serviceName: {{ $.Release.Name }}-{{ .name }}
+  replicas: {{ .replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}-{{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.Release.Name }}-{{ .name }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: "{{ .image.repository }}:{{ .image.tag }}"
+          ports:
+            - containerPort: {{ .service.port }}
+          env:
+          {{- range $key, $value := .env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+          {{- end }}
+          volumeMounts:
+            - name: data
+              mountPath: {{ .volumeMounts.mountPath }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .storage.size }}
+{{- end }}
+{{- end }}

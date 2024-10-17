@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # mysql container 
+  mysql-db:
+    build:
+      context: ../../db/
+      dockerfile: Dockerfile
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123!
+      MYSQL_DATABASE: stensul
+      MYSQL_USER: stensul
+      MYSQL_PASSWORD: Password123!
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  # flask container
+  flask-app:
+    build:
+      context: ../../app/
+      dockerfile: Dockerfile
+    container_name: flask-app
+    environment:
+      - MYSQL_HOST=192.168.64.2
+      - MYSQL_DATABASE=stensul
+      - MYSQL_USER=stensul
+      - MYSQL_PASSWORD=Password123!
+    ports:
+      - "5000:5000"
+
+volumes:
+  mysql_data:

@@ -1,0 +1,17 @@
+FROM python:3.9
+
+# Copy app
+WORKDIR /app
+COPY . /app
+
+# Install dependecies
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5000
+
+# Set environment variables for Flask
+ENV FLASK_APP=main.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+# Run the application
+CMD ["flask", "run"]
