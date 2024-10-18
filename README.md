@@ -64,7 +64,7 @@ curl -X GET http://localhost:5000/list_names # add colima ip here
 ## Push docker to registry
 ```bash
 chmod +x deploy/docker/push_images.sh
-cd /deploy/docker
+cd /deploy/docker/
 ./push_images.sh
 ```
 

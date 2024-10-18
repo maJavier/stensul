@@ -1,5 +1,4 @@
 #!/bin/bash
-
 FLASK_APP_DIR="../../app/"
 MYSQL_DB_DIR="../../db/"
 FLASK_IMAGE="majavier/stensul-flask:latest"

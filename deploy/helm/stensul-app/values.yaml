@@ -37,12 +37,7 @@ apps:
 # Ingress settings
 ingress:
   enabled: true
-  hostname: stensul.test.com
+  hostname: test.stensul.com
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: "/"
   path: "/"
-
-# External LoadBalancer for the Ingress Controller
-ingressController:
-  enabled: true
-  serviceType: LoadBalancer

@@ -29,7 +29,7 @@ def add_name():
     try:
         cursor.execute("INSERT INTO names (name) VALUES (%s)", (name,))
         connection.commit()
-        return jsonify({"message": "Name added successfully"}), 201
+        return jsonify({"message": "Name added successfully"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     finally:
