@@ -6,10 +6,9 @@ apps:
       repository: majavier/stensul-flask
       tag: latest
     service:
-      type: LoadBalancer
-      port: 80
-      targetPort: 5000
-    env:
+      type: ClusterIP
+      port: 5000
+    env:  # todo
       MYSQL_HOST: stensul-app-mysql
       MYSQL_DATABASE: stensul
       MYSQL_USER: stensul
@@ -28,8 +27,22 @@ apps:
       mountPath: /var/lib/mysql
     storage:
       size: 1Gi
-    env:
+    env: # todo
       MYSQL_ROOT_PASSWORD: Password123!
       MYSQL_DATABASE: stensul
       MYSQL_USER: stensul
       MYSQL_PASSWORD: Password123!
+
+
+# Ingress settings
+ingress:
+  enabled: true
+  hostname: stensul.test.com
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+  path: "/"
+
+# External LoadBalancer for the Ingress Controller
+ingressController:
+  enabled: true
+  serviceType: LoadBalancer

@@ -56,15 +56,16 @@ docker-compose up --build
 ## Test app locally
 ```bash
 # add user endpoint
-curl -X POST -H "Content-Type: application/json" -d '{"name": "javi"}' http://localhost:5000/add_name
+curl -X POST -H "Content-Type: application/json" -d '{"name": "javi"}' http://localhost:5000/add_name # add colima ip here
 # list users endopint
-curl -X GET http://localhost:5000/list_names
+curl -X GET http://localhost:5000/list_names # add colima ip here
 ```
 
 ## Push docker to registry
 ```bash
 chmod +x deploy/docker/push_images.sh
-./deploy/docker/push_images.sh
+cd /deploy/docker
+./push_images.sh
 ```
 
 ## Deploy app remotly 
